@@ -112,7 +112,7 @@ def main():
                 student_id = input("Nhập MSSV cần tìm: ").strip()
                 student = service.find_by_id(student_id)
                 if student is None:
-                    print("Không tìm thấy sinh viên.")
+                    print("Không tìm thấy sinh viê6n.")
                 else:
                     show_list([student], student_output, "KẾT QUẢ TÌM KIẾM")
 
@@ -144,6 +144,8 @@ def main():
         except Exception as e:
             # Bắt các lỗi không lường trước để chương trình không bị dừng đột ngột
             print(f"Đã xảy ra lỗi: {e}")
+
+            
 
 
 if __name__ == "__main__":
