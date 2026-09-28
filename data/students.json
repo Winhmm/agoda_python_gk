@@ -1,0 +1,15 @@
+[
+    {
+        "student_id": "002",
+        "name": "Võ Hoàng Quân",
+        "subjects": [
+            {
+                "name": "Python",
+                "score_40": 9.0,
+                "score_60": 10.0,
+                "final_score": 9.6
+            }
+        ],
+        "gpa": 9.6
+    }
+]
