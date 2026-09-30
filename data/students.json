@@ -1,15 +1,632 @@
 [
     {
-        "student_id": "002",
+        "student_id": "SV.1",
+        "name": "Hào",
+        "subjects": [
+            {
+                "name": "C#",
+                "score_40": 7.0,
+                "score_60": 7.0,
+                "final_score": 7.0
+            }
+        ],
+        "gpa": 7.0
+    },
+    {
+        "student_id": "SV.2",
         "name": "Võ Hoàng Quân",
+        "subjects": [
+            {
+                "name": "python",
+                "score_40": 10.0,
+                "score_60": 10.0,
+                "final_score": 10.0
+            },
+            {
+                "name": "Lý thuyết đồ thị",
+                "score_40": 7.0,
+                "score_60": 8.0,
+                "final_score": 7.6
+            }
+        ],
+        "gpa": 8.8
+    },
+    {
+        "student_id": "SV.3",
+        "name": "Nguyễn Thanh Phong",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 8.0,
+                "score_60": 8.0,
+                "final_score": 8.0
+            },
+            {
+                "name": "Toán cơ sở",
+                "score_40": 7.0,
+                "score_60": 8.0,
+                "final_score": 7.6
+            },
+            {
+                "name": "Python",
+                "score_40": 4.5,
+                "score_60": 5.0,
+                "final_score": 4.8
+            }
+        ],
+        "gpa": 6.8
+    },
+    {
+        "student_id": "SV.4",
+        "name": "Trần Minh Anh",
+        "subjects": [
+            {
+                "name": "C++",
+                "score_40": 8.0,
+                "score_60": 7.5,
+                "final_score": 7.7
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 7.0,
+                "score_60": 8.0,
+                "final_score": 7.6
+            },
+            {
+                "name": "Mạng máy tính",
+                "score_40": 8.5,
+                "score_60": 7.0,
+                "final_score": 7.6
+            }
+        ],
+        "gpa": 7.63
+    },
+    {
+        "student_id": "SV.5",
+        "name": "Lê Quốc Bảo",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 6.5,
+                "score_60": 7.5,
+                "final_score": 7.1
+            },
+            {
+                "name": "Cấu trúc dữ liệu và giải thuật",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            },
+            {
+                "name": "Hệ điều hành",
+                "score_40": 7.0,
+                "score_60": 6.5,
+                "final_score": 6.7
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 9.0,
+                "score_60": 8.0,
+                "final_score": 8.4
+            }
+        ],
+        "gpa": 7.62
+    },
+    {
+        "student_id": "SV.6",
+        "name": "Phạm Gia Huy",
         "subjects": [
             {
                 "name": "Python",
                 "score_40": 9.0,
-                "score_60": 10.0,
-                "final_score": 9.6
+                "score_60": 8.5,
+                "final_score": 8.7
+            },
+            {
+                "name": "Trí tuệ nhân tạo",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 8.0,
+                "score_60": 7.0,
+                "final_score": 7.4
             }
         ],
-        "gpa": 9.6
+        "gpa": 7.97
+    },
+    {
+        "student_id": "SV.7",
+        "name": "Nguyễn Hoàng Nam",
+        "subjects": [
+            {
+                "name": "C#",
+                "score_40": 7.0,
+                "score_60": 8.0,
+                "final_score": 7.6
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 8.5,
+                "score_60": 9.0,
+                "final_score": 8.8
+            },
+            {
+                "name": "Mạng máy tính",
+                "score_40": 6.5,
+                "score_60": 7.0,
+                "final_score": 6.8
+            },
+            {
+                "name": "Phân tích và thiết kế hệ thống",
+                "score_40": 8.0,
+                "score_60": 7.5,
+                "final_score": 7.7
+            }
+        ],
+        "gpa": 7.72
+    },
+    {
+        "student_id": "SV.8",
+        "name": "Đỗ Thành Đạt",
+        "subjects": [
+            {
+                "name": "C++",
+                "score_40": 6.0,
+                "score_60": 6.5,
+                "final_score": 6.3
+            },
+            {
+                "name": "Toán rời rạc",
+                "score_40": 7.5,
+                "score_60": 7.0,
+                "final_score": 7.2
+            },
+            {
+                "name": "Cấu trúc dữ liệu và giải thuật",
+                "score_40": 8.0,
+                "score_60": 7.5,
+                "final_score": 7.7
+            }
+        ],
+        "gpa": 7.07
+    },
+    {
+        "student_id": "SV.9",
+        "name": "Vũ Đức Anh",
+        "subjects": [
+            {
+                "name": "Python",
+                "score_40": 8.5,
+                "score_60": 9.0,
+                "final_score": 8.8
+            },
+            {
+                "name": "Machine Learning",
+                "score_40": 7.0,
+                "score_60": 8.5,
+                "final_score": 7.9
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 8.0,
+                "score_60": 8.0,
+                "final_score": 8.0
+            },
+            {
+                "name": "Mạng máy tính",
+                "score_40": 7.5,
+                "score_60": 7.0,
+                "final_score": 7.2
+            }
+        ],
+        "gpa": 7.98
+    },
+    {
+        "student_id": "SV.10",
+        "name": "Nguyễn Thị Ngọc",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            },
+            {
+                "name": "Hệ điều hành",
+                "score_40": 7.0,
+                "score_60": 7.5,
+                "final_score": 7.3
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 9.0,
+                "score_60": 8.5,
+                "final_score": 8.7
+            }
+        ],
+        "gpa": 8.1
+    },
+    {
+        "student_id": "SV.11",
+        "name": "Trần Quốc Việt",
+        "subjects": [
+            {
+                "name": "C++",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            },
+            {
+                "name": "Thuật toán",
+                "score_40": 8.5,
+                "score_60": 8.0,
+                "final_score": 8.2
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 6.5,
+                "score_60": 7.0,
+                "final_score": 6.8
+            },
+            {
+                "name": "An toàn thông tin",
+                "score_40": 7.0,
+                "score_60": 7.5,
+                "final_score": 7.3
+            }
+        ],
+        "gpa": 7.52
+    },
+    {
+        "student_id": "SV.12",
+        "name": "Phan Minh Khang",
+        "subjects": [
+            {
+                "name": "Python",
+                "score_40": 9.5,
+                "score_60": 9.0,
+                "final_score": 9.2
+            },
+            {
+                "name": "Trí tuệ nhân tạo",
+                "score_40": 8.5,
+                "score_60": 9.0,
+                "final_score": 8.8
+            },
+            {
+                "name": "Học máy",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            }
+        ],
+        "gpa": 8.6
+    },
+    {
+        "student_id": "SV.13",
+        "name": "Lê Thị Mai",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 6.0,
+                "score_60": 7.0,
+                "final_score": 6.6
+            },
+            {
+                "name": "Cấu trúc dữ liệu",
+                "score_40": 7.5,
+                "score_60": 7.0,
+                "final_score": 7.2
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            }
+        ],
+        "gpa": 7.37
+    },
+    {
+        "student_id": "SV.14",
+        "name": "Nguyễn Văn Long",
+        "subjects": [
+            {
+                "name": "C#",
+                "score_40": 8.5,
+                "score_60": 8.0,
+                "final_score": 8.2
+            },
+            {
+                "name": "SQL",
+                "score_40": 9.0,
+                "score_60": 8.5,
+                "final_score": 8.7
+            },
+            {
+                "name": "Phân tích thiết kế hệ thống",
+                "score_40": 7.0,
+                "score_60": 7.5,
+                "final_score": 7.3
+            },
+            {
+                "name": "Mạng máy tính",
+                "score_40": 8.0,
+                "score_60": 7.0,
+                "final_score": 7.4
+            }
+        ],
+        "gpa": 7.9
+    },
+    {
+        "student_id": "SV.15",
+        "name": "Trần Anh Tú",
+        "subjects": [
+            {
+                "name": "C++",
+                "score_40": 5.5,
+                "score_60": 6.0,
+                "final_score": 5.8
+            },
+            {
+                "name": "Toán rời rạc",
+                "score_40": 6.5,
+                "score_60": 7.0,
+                "final_score": 6.8
+            },
+            {
+                "name": "Hệ điều hành",
+                "score_40": 7.0,
+                "score_60": 6.5,
+                "final_score": 6.7
+            }
+        ],
+        "gpa": 6.43
+    },
+    {
+        "student_id": "SV.16",
+        "name": "Phạm Hoàng Duy",
+        "subjects": [
+            {
+                "name": "Python",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 9.0,
+                "score_60": 8.0,
+                "final_score": 8.4
+            },
+            {
+                "name": "Công nghệ phần mềm",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            }
+        ],
+        "gpa": 8.2
+    },
+    {
+        "student_id": "SV.17",
+        "name": "Nguyễn Khánh Linh",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 9.0,
+                "score_60": 8.5,
+                "final_score": 8.7
+            },
+            {
+                "name": "Cấu trúc dữ liệu",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            },
+            {
+                "name": "Mạng máy tính",
+                "score_40": 7.0,
+                "score_60": 7.5,
+                "final_score": 7.3
+            }
+        ],
+        "gpa": 8.1
+    },
+    {
+        "student_id": "SV.18",
+        "name": "Lê Minh Quân",
+        "subjects": [
+            {
+                "name": "C#",
+                "score_40": 6.5,
+                "score_60": 7.0,
+                "final_score": 6.8
+            },
+            {
+                "name": "SQL",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            },
+            {
+                "name": "Hệ điều hành",
+                "score_40": 6.0,
+                "score_60": 7.0,
+                "final_score": 6.6
+            },
+            {
+                "name": "An toàn thông tin",
+                "score_40": 8.0,
+                "score_60": 7.5,
+                "final_score": 7.7
+            }
+        ],
+        "gpa": 7.22
+    },
+    {
+        "student_id": "SV.19",
+        "name": "Đặng Quốc Huy",
+        "subjects": [
+            {
+                "name": "Python",
+                "score_40": 9.0,
+                "score_60": 9.5,
+                "final_score": 9.3
+            },
+            {
+                "name": "Machine Learning",
+                "score_40": 8.0,
+                "score_60": 8.5,
+                "final_score": 8.3
+            },
+            {
+                "name": "Trí tuệ nhân tạo",
+                "score_40": 8.5,
+                "score_60": 9.0,
+                "final_score": 8.8
+            }
+        ],
+        "gpa": 8.8
+    },
+    {
+        "student_id": "SV.20",
+        "name": "Hoàng Thị Yến",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 7.0,
+                "score_60": 7.5,
+                "final_score": 7.3
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 8.5,
+                "score_60": 8.0,
+                "final_score": 8.2
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 7.5,
+                "score_60": 8.5,
+                "final_score": 8.1
+            },
+            {
+                "name": "Công nghệ phần mềm",
+                "score_40": 8.0,
+                "score_60": 7.0,
+                "final_score": 7.4
+            }
+        ],
+        "gpa": 7.75
+    },
+    {
+        "student_id": "SV.21",
+        "name": "Nguyễn Đức Minh",
+        "subjects": [
+            {
+                "name": "C++",
+                "score_40": 7.0,
+                "score_60": 6.5,
+                "final_score": 6.7
+            },
+            {
+                "name": "Thuật toán",
+                "score_40": 8.0,
+                "score_60": 7.5,
+                "final_score": 7.7
+            },
+            {
+                "name": "Mạng máy tính",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            }
+        ],
+        "gpa": 7.4
+    },
+    {
+        "student_id": "SV.22",
+        "name": "Trần Ngọc Hà",
+        "subjects": [
+            {
+                "name": "Python",
+                "score_40": 8.5,
+                "score_60": 8.0,
+                "final_score": 8.2
+            },
+            {
+                "name": "Cơ sở dữ liệu",
+                "score_40": 9.0,
+                "score_60": 8.5,
+                "final_score": 8.7
+            },
+            {
+                "name": "Phân tích thiết kế hệ thống",
+                "score_40": 7.5,
+                "score_60": 8.0,
+                "final_score": 7.8
+            },
+            {
+                "name": "Lập trình Web",
+                "score_40": 8.0,
+                "score_60": 9.0,
+                "final_score": 8.6
+            }
+        ],
+        "gpa": 8.32
+    },
+    {
+        "student_id": "SV.23",
+        "name": "Phạm Tuấn Kiệt",
+        "subjects": [
+            {
+                "name": "Java",
+                "score_40": 6.5,
+                "score_60": 7.0,
+                "final_score": 6.8
+            },
+            {
+                "name": "Cấu trúc dữ liệu và giải thuật",
+                "score_40": 7.0,
+                "score_60": 7.5,
+                "final_score": 7.3
+            },
+            {
+                "name": "Hệ điều hành",
+                "score_40": 8.0,
+                "score_60": 7.0,
+                "final_score": 7.4
+            },
+            {
+                "name": "Công nghệ phần mềm",
+                "score_40": 8.5,
+                "score_60": 8.0,
+                "final_score": 8.2
+            }
+        ],
+        "gpa": 7.42
+    },
+    {
+        "student_id": "SV.24",
+        "name": "Lâm Mỹ Uyên",
+        "subjects": [
+            {
+                "name": "Toán rời rạc",
+                "score_40": 9.0,
+                "score_60": 9.0,
+                "final_score": 9.0
+            }
+        ],
+        "gpa": 9.0
     }
 ]
