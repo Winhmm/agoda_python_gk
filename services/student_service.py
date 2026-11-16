@@ -1,122 +1,61 @@
-# services/student_service.py
-from models.student import Student
-from models.subject import Subject
 from services.json_service import JsonService
+from utils.validation import Validator
 
 
 class StudentService:
-    # Lớp xử lý logic nghiệp vụ (business logic) liên quan đến sinh viên:
-    # thêm, tìm kiếm, sắp xếp, thống kê, lưu/đọc dữ liệu.
-    # StudentService sử dụng JsonService để thao tác với file, tách biệt
-    # rõ ràng giữa "logic nghiệp vụ" và "lưu trữ dữ liệu".
+    # Nghiệp vụ quản lý sinh viên: thêm, tìm kiếm, sắp xếp, thống kê, lưu/đọc.
 
-    def __init__(self, json_service: JsonService = None):
-        self.json_service = json_service if json_service else JsonService()
-        self.students = (
-            self.json_service.load()
-        )  # Tải dữ liệu sẵn có (nếu có) khi khởi tạo
+    def __init__(self, json_service=None):
+        # Khởi tạo danh sách rỗng, load_failed = True khi file JSON bị hỏng.
+        self.json_service = json_service or JsonService()
+        self.students = []
+        self.load_failed = False
 
-    # ---------------------- THÊM SINH VIÊN / MÔN HỌC ----------------------
-
-    def add_student(self, student_id, name):
-        # Thêm sinh viên mới. Không cho phép trùng MSSV.
+    def load_data(self):
+        # Nạp dữ liệu từ file JSON, file hỏng thì bắt đầu rỗng, trả về danh sách thông báo.
         try:
+            self.students, messages = self.json_service.load()
+            self.load_failed = False
+            return messages
+        except (ValueError, OSError) as e:
+            self.students = []
+            self.load_failed = True
+            return [f"Lỗi khi đọc file JSON: {e}"]
 
-            if any(s.student_id == student_id for s in self.students):
-                raise ValueError(
-                    f"Mã sinh viên '{student_id}' đã tồn tại trong hệ thống!"
-                )
+    def save_data(self):
+        # Lưu toàn bộ danh sách sinh viên xuống file JSON.
+        self.json_service.save(self.students)
+        self.load_failed = False
 
-            student = Student(student_id, name)
-            self.students.append(student)
-
-            return student
-
-        except ValueError as e:
-
-            print(f"\nLỗi khi thêm sinh viên: {e}")
-            return None
-
-    def add_subject_to_student(self, student_id, subject_name, score_40, score_60):
-        """Thêm môn học (kèm điểm) vào sinh viên theo MSSV."""
-        try:
-            student = self.find_by_id(student_id)
-            if student is None:
-                raise ValueError(f"Không tìm thấy sinh viên có MSSV '{student_id}'.")
-
-            subject = Subject(subject_name, score_40, score_60)
-            student.add_subject(subject)
-            return subject
-        except ValueError as e:
-            print(f"Lỗi khi thêm môn học: {e}")
-            return None
-
-    # ---------------------- TÌM KIẾM ----------------------
+    def add_student(self, student):
+        # Thêm sinh viên mới, không cho phép trùng MSSV.
+        if self.find_by_id(student.student_id) is not None:
+            raise ValueError(f"Mã sinh viên '{student.student_id}' đã tồn tại!")
+        self.students.append(student)
 
     def find_by_id(self, student_id):
-        # Tìm sinh viên theo MSSV (trùng khớp chính xác). Trả về None nếu không thấy.
+        # Tìm sinh viên theo MSSV (không phân biệt hoa/thường), không thấy trả về None.
+        student_id = student_id.strip().upper()
         for student in self.students:
             if student.student_id == student_id:
                 return student
         return None
 
     def find_by_name(self, name):
-
-        # Tìm sinh viên theo họ tên (không phân biệt hoa/thường, cho phép chứa 1 phần tên).
-        # Trả về danh sách các sinh viên khớp (có thể rỗng).
-
+        # Tìm sinh viên có họ tên chứa từ khóa (không phân biệt hoa/thường).
         keyword = name.strip().lower()
-        result = [s for s in self.students if keyword in s.name.lower()]
-        return result
-
-    # ---------------------- SẮP XẾP ----------------------
+        return [s for s in self.students if keyword in s.name.lower()]
 
     def sort_by_gpa(self, descending=True):
-        # Sắp xếp danh sách sinh viên theo GPA. Trả về danh sách mới (không thay đổi self.students).
+        # Trả về danh sách mới sắp theo GPA, không làm thay đổi danh sách gốc.
         return sorted(self.students, key=lambda s: s.gpa, reverse=descending)
 
-    # ---------------------- THỐNG KÊ ----------------------
-
     def statistics(self):
-
-        # Thống kê GPA của nhóm sinh viên:
-        # - Sinh viên có GPA cao nhất
-        # - Sinh viên có GPA thấp nhất
-        # - GPA trung bình của cả nhóm
-        # Trả về dict, hoặc None nếu danh sách rỗng.
-
+        # Thống kê GPA cao nhất, thấp nhất, trung bình; danh sách rỗng trả về None.
         if not self.students:
-            print("Danh sách sinh viên rỗng, không thể thống kê.")
             return None
 
         highest = max(self.students, key=lambda s: s.gpa)
         lowest = min(self.students, key=lambda s: s.gpa)
-        avg_gpa = round(sum(s.gpa for s in self.students) / len(self.students), 2)
-
-        return {"highest": highest, "lowest": lowest, "average_gpa": avg_gpa}
-
-    # ---------------------- LƯU / TẢI DỮ LIỆU ----------------------
-
-    def save_data(self):
-        # Lưu toàn bộ danh sách sinh viên hiện tại xuống file JSON
-        self.json_service.save(self.students)
-
-    def reload_data(self):
-        # Tải lại dữ liệu từ file JSON (ghi đè danh sách hiện tại trong bộ nhớ)
-        self.students = self.json_service.load()
-
-    # ---------------------- TIỆN ÍCH HIỂN THỊ ----------------------
-
-    def get_all(self):
-        # Trả về toàn bộ danh sách sinh viên
-        return self.students
-
-    def display_all(self):
-        # In toàn bộ danh sách sinh viên ra màn hình
-        if not self.students:
-            print("Danh sách sinh viên rỗng.")
-            return
-        for student in self.students:
-            print("-" * 40)
-            print(student)
-        print("-" * 40)
+        average_gpa = Validator.round_half_up(sum(s.gpa for s in self.students) / len(self.students), 2)
+        return {"highest": highest, "lowest": lowest, "average_gpa": average_gpa}

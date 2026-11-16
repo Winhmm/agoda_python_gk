@@ -1,67 +1,56 @@
-# services/json_service.py
 import json
-import os
-from models.student import Student
 from pathlib import Path
+
+from models.student import Student
 
 
 class JsonService:
-    # Lớp chịu trách nhiệm đọc/ghi dữ liệu sinh viên vào/ra file JSON.
-    # Tách riêng phần I/O ra khỏi logic nghiệp vụ (StudentService) để dễ bảo trì,
-    # dễ thay thế nguồn lưu trữ (ví dụ sau này đổi sang SQLite) mà không ảnh hưởng chỗ khác.
+    # Đọc/ghi danh sách sinh viên với file JSON.
 
     def __init__(self, file_path=None):
+        # Mặc định dùng file data/students.json trong project, tự tạo thư mục nếu chưa có.
         if file_path is None:
-
-            PROJECT_ROOT = Path(__file__).resolve().parent.parent
-            self.file_path = PROJECT_ROOT / "data" / "students.json"
-
+            project_root = Path(__file__).resolve().parent.parent
+            self.file_path = project_root / "data" / "students.json"
         else:
             self.file_path = Path(file_path)
 
-        # Tự động tạo thư mục 'data/' nếu chưa có
         self.file_path.parent.mkdir(parents=True, exist_ok=True)
 
-    def save(self, students):
-        # Lưu danh sách object Student (list) xuống file JSON.
-        # students: list các object Student
-
+    @staticmethod
+    def _sort_key(student):
+        # Khóa sắp xếp: tách lấy số sau 'SV.' để SV.2 đứng trước SV.10, mã sai định dạng xếp cuối.
         try:
+            return (0, int(student.student_id.split(".")[1]))
+        except (IndexError, ValueError):
+            return (1, 0)
 
-            sorted_students = sorted(
-                students, key=lambda student: int(student.student_id.split(".")[1])
-            )
+    def save(self, students):
+        # Ghi danh sách sinh viên (sắp theo MSSV) xuống file JSON.
+        sorted_students = sorted(students, key=self._sort_key)
+        data = [student.to_dict() for student in sorted_students]
 
-            # Lưu danh sách đã được sắp xếp
-            data = [student.to_dict() for student in sorted_students]
-
-            with open(self.file_path, "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=4)
-                print(f"\nĐã lưu dữ liệu vào '{self.file_path}' thành công.")
-        except (IOError, OSError) as e:
-            print(f"\nLỗi khi ghi file JSON: {e}\n")
-        except TypeError as e:
-            print(f"\nLỗi dữ liệu không thể chuyển sang JSON: {e}\n")
+        with open(self.file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
 
     def load(self):
-        # Đọc dữ liệu từ file JSON và trả về danh sách object Student.
-        # Nếu file không tồn tại hoặc lỗi định dạng -> trả về list rỗng.
+        # Đọc file JSON, trả về (danh sách Student, thông báo), bỏ qua bản ghi lỗi.
+        if not self.file_path.exists():
+            message = f"File '{self.file_path}' chưa tồn tại. Bắt đầu với danh sách rỗng."
+            return [], [message]
 
-        if not os.path.exists(self.file_path):
-            print(f"File '{self.file_path}' chưa tồn tại. Bắt đầu với danh sách rỗng.")
-            return []
+        with open(self.file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
 
-        try:
-            with open(self.file_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            students = [Student.from_dict(item) for item in data]
-            return students
-        except json.JSONDecodeError as e:
-            print(f"Lỗi định dạng file JSON: {e}")
-            return []
-        except (IOError, OSError) as e:
-            print(f"Lỗi khi đọc file JSON: {e}")
-            return []
-        except (KeyError, ValueError) as e:
-            print(f"Dữ liệu JSON không hợp lệ để tạo Student: {e}")
-            return []
+        if not isinstance(data, list):
+            raise ValueError("Nội dung file JSON phải là một danh sách.")
+
+        students, messages = [], []
+        for i, item in enumerate(data, start=1):
+            try:
+                students.append(Student.from_dict(item))
+            except KeyError as e:
+                messages.append(f"Bỏ qua bản ghi thứ {i} do thiếu trường {e}.")
+            except (ValueError, TypeError) as e:
+                messages.append(f"Bỏ qua bản ghi thứ {i} do dữ liệu không hợp lệ: {e}")
+        return students, messages
